@@ -4,6 +4,9 @@ Responsive player for NASA night-light sonifications, built with **React 19 + Ty
 The sidebar groups records into **Visual Sonification** (World map, India map by year 2012–2023)
 and **Data-Based Sonification** (Cities: Dubai, Tokyo, LA, NY).
 
+## Hosted website link
+https://noteblockspaceapp.netlify.app
+
 ## Run it
 
 ```bash
