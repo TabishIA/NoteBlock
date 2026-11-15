@@ -1,0 +1,640 @@
+:root {
+  color-scheme: dark;
+  --line: #273149;
+  --muted: #929cb2;
+  --text: #f2f5ff;
+  --yellow: #ffe44d;
+  --cyan: #57d9ea;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #050916;
+  color: var(--text);
+  font:
+    14px Manrope,
+    system-ui,
+    sans-serif;
+}
+.sky {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(#05091675, #050916eb 62%, #050916),
+    url("https://svs.gsfc.nasa.gov/vis/a000000/a005300/a005313/nightlights_flat_series_and_change_wZooms_13_EIC.02599_print.jpg")
+      center 40% / cover;
+  opacity: 0.75;
+}
+.shell {
+  position: relative;
+  max-width: 1600px;
+  min-height: 100vh;
+  padding: 0 28px;
+  margin: auto;
+}
+header {
+  height: 74px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+.brand i {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffe44d8a;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--yellow);
+  font-size: 12px;
+}
+.brand b {
+  letter-spacing: 0.2em;
+  font-size: 14px;
+}
+.brand small {
+  display: block;
+  color: var(--muted);
+  font: 9px "DM Mono";
+  letter-spacing: 0.2em;
+  margin-top: 4px;
+}
+header button {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #05091688;
+  color: #d9e0ef;
+  padding: 11px 17px;
+  font: 10px "DM Mono";
+  letter-spacing: 0.13em;
+  cursor: pointer;
+}
+.intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 20px 0 16px;
+}
+.intro small,
+.label,
+.key,
+.credits,
+blockquote b {
+  color: #9ba8c0;
+  font: 12px "DM Mono";
+  letter-spacing: 0.17em;
+}
+.intro h1 {
+  font-size: clamp(24px, 2.5vw, 34px);
+  letter-spacing: -0.05em;
+  margin: 6px 0 0;
+}
+.intro p {
+  color: #aab3c8;
+  font-size: 12px;
+  margin: 0 0 4px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(210px, 258px) minmax(400px, 1fr) minmax(
+      235px,
+      300px
+    );
+  gap: 14px;
+}
+.panel {
+  border: 1px solid #29334c;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #101629d9, #070d1ddf);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 15px 55px #0003;
+}
+.crate {
+  padding: 17px 12px;
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  padding: 0 6px 13px;
+}
+.label span {
+  float: right;
+  color: #6f7990;
+}
+#trackList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.nav-group h2 {
+  margin: 0 6px 8px;
+  color: var(--cyan);
+  font: 12px "DM Mono";
+  letter-spacing: 0.12em;
+}
+.nav-item,
+.nav-folder summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: 14px Manrope, system-ui, sans-serif;
+}
+.nav-item:hover,
+.nav-folder summary:hover {
+  background: #ffffff10;
+}
+.nav-item.active {
+  border-color: #ffe44d8a;
+  background: #ffe44d12;
+}
+.nav-item:disabled {
+  color: #7d879d;
+  cursor: default;
+}
+.nav-item:disabled:hover {
+  background: transparent;
+}
+.nav-item small {
+  color: #667189;
+  font: 7px "DM Mono";
+}
+.nav-folder { margin-top: 2px; }
+.nav-folder summary {
+  list-style: none;
+  font-weight: 700;
+}
+.nav-folder summary::-webkit-details-marker { display: none; }
+.nav-folder summary::before {
+  content: "⌄";
+  color: var(--yellow);
+  margin-right: 8px;
+}
+.nav-folder:not([open]) summary::before { content: "›"; }
+.nav-children {
+  margin: 2px 0 0 12px;
+  padding-left: 8px;
+  border-left: 1px solid #ffffff1b;
+}
+.nav-child { padding: 7px 9px; font-size: 13px; }
+.crate footer {
+  margin-top: auto;
+  padding: 14px 4px 0;
+  color: #8290a9;
+  font-size: 12px;
+}
+.player {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.screen {
+  position: relative;
+  aspect-ratio: 16/9;
+  min-height: 190px;
+  background: #020611;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #020611;
+}
+.badge,
+.caption {
+  position: absolute;
+  font: 11px "DM Mono";
+  letter-spacing: 0.14em;
+  color: #eef1fc;
+  text-transform: uppercase;
+}
+.badge {
+  left: 12px;
+  top: 12px;
+  padding: 8px 10px;
+  border: 1px solid #ffffff2b;
+  border-radius: 20px;
+  background: #050916aa;
+}
+.caption {
+  bottom: 11px;
+  left: 13px;
+  right: 13px;
+  display: flex;
+  justify-content: flex-end;
+}
+.caption span:last-child {
+  padding: 6px 8px;
+  border: 1px solid #ffffff2b;
+  border-radius: 15px;
+  background: #050916aa;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 5px 8px;
+  border-bottom: 1px solid var(--line);
+}
+.controls button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ffffff2b;
+  background: #080e20;
+  color: #e3e9f6;
+  cursor: pointer;
+}
+.controls .play {
+  width: 46px;
+  height: 46px;
+  border: 0;
+  background: var(--yellow);
+  color: #111628;
+  font-size: 16px;
+}
+.seekbox {
+  flex: 1;
+  min-width: 60px;
+  padding: 0 5px;
+}
+.seekbox div {
+  display: flex;
+  justify-content: space-between;
+  color: #929cb2;
+  font: 9px "DM Mono";
+  margin-bottom: 5px;
+}
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #aeb9cf;
+  width: 85px;
+}
+.controls input {
+  width: 100%;
+  accent-color: var(--yellow);
+  height: 4px;
+}
+.summary {
+  padding: 12px 6px 10px;
+}
+.summary small {
+  color: var(--cyan);
+  font: 11px "DM Mono";
+  letter-spacing: 0.15em;
+}
+.summary h2 {
+  font-size: 18px;
+  margin: 4px 0;
+}
+.summary p {
+  font-size: 14px;
+  color: #aab4c8;
+  line-height: 1.6;
+  margin: 4px 0 0;
+}
+.key {
+  border-top: 1px solid var(--line);
+  padding: 10px 6px 0;
+}
+.key > div {
+  color: var(--cyan);
+  font: 11px "DM Mono";
+  letter-spacing: 0.15em;
+}
+.key > div span {
+  float: right;
+  color: #aab4c8;
+}
+.key p {
+  color: #b7c1d4;
+  font: 14px Manrope, system-ui, sans-serif;
+  letter-spacing: 0;
+  margin: 9px 0 2px;
+}
+.story {
+  padding: 23px 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.storyhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.storyhead i {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #ffffff2b;
+  display: grid;
+  place-items: center;
+  color: #a8dff2;
+  background: radial-gradient(circle, #2a648080, #091126);
+}
+.storyhead small {
+  color: var(--cyan);
+  font: 12px "DM Mono";
+  letter-spacing: 0.13em;
+}
+.story h2 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 5px 0;
+}
+.story > p {
+  color: #aeb8cc;
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 18px 0;
+}
+.storybottom {
+  margin-top: auto;
+}
+blockquote {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #57d9ea33;
+  border-radius: 13px;
+  background: #22688117;
+  color: #aab8cd;
+  font-size: 13px;
+  line-height: 1.65;
+}
+blockquote b {
+  color: #eaf3ff;
+  font-size: 11px;
+}
+.storybottom > a {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #bbc5d8;
+  font: 12px "DM Mono";
+  letter-spacing: 0.07em;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 11px;
+  margin-top: 9px;
+}
+.storybottom > a:hover {
+  color: var(--yellow);
+}
+.credits {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 2px;
+  color: #748097;
+  font-size: 8px;
+}
+.credits a {
+  color: #aab6c9;
+  text-decoration: none;
+}
+dialog {
+  width: min(740px, calc(100% - 28px));
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid #ffffff30;
+  border-radius: 20px;
+  background: #0b1225;
+  color: var(--text);
+  padding: 28px;
+  box-shadow: 0 30px 100px #000;
+}
+dialog::backdrop {
+  background: #000b;
+  backdrop-filter: blur(7px);
+}
+.close {
+  float: right;
+  background: none;
+  color: #dbe2f0;
+  border: 0;
+  font-size: 24px;
+  cursor: pointer;
+}
+dialog > small {
+  color: var(--cyan);
+  font: 12px "DM Mono";
+  letter-spacing: 0.15em;
+}
+dialog h2 {
+  font-size: 27px;
+  margin: 10px 0 20px;
+}
+.methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.methods article,
+.source {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff06;
+}
+.methods article > b {
+  color: var(--yellow);
+  font: 12px "DM Mono";
+  letter-spacing: 0.1em;
+}
+.methods p,
+.source {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #aeb9cc;
+}
+.methods a,
+.source a {
+  display: block;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.source {
+  margin-top: 12px;
+}
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: 210px minmax(350px, 1fr);
+  }
+  .story {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+  .story > p {
+    margin: 0;
+  }
+  .storybottom {
+    margin: 0;
+  }
+  .crate {
+    min-height: 470px;
+  }
+}
+@media (max-width: 700px) {
+  .shell {
+    padding: 0 13px;
+  }
+  header {
+    height: 64px;
+  }
+  .brand i {
+    width: 35px;
+    height: 35px;
+  }
+  .brand b {
+    font-size: 12px;
+  }
+  .intro {
+    display: block;
+    padding: 16px 2px 12px;
+  }
+  .intro p {
+    font-size: 10px;
+    margin-top: 6px;
+  }
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .player {
+    order: 1;
+    padding: 9px;
+  }
+  .screen {
+    min-height: 0;
+  }
+  .controls {
+    gap: 5px;
+    padding-top: 9px;
+  }
+  .controls button {
+    width: 31px;
+    height: 31px;
+    font-size: 11px;
+  }
+  .controls .play {
+    width: 40px;
+    height: 40px;
+  }
+  .controls label {
+    width: 60px;
+  }
+  .crate {
+    order: 2;
+    min-height: 0;
+    padding: 13px 9px;
+  }
+  .crate footer {
+    display: none;
+  }
+  .story {
+    order: 3;
+    display: flex;
+    padding: 15px;
+  }
+  .story > p {
+    margin: 12px 0;
+  }
+  .storybottom {
+    margin: 0;
+  }
+  .credits {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 7px;
+  }
+  .methods {
+    grid-template-columns: 1fr;
+  }
+  dialog {
+    padding: 22px 17px;
+  }
+}
+
+/* ── Additions for the React version ─────────────────────────────────── */
+.key .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+.key .grid-info {
+  margin: 4px 0 2px;
+  color: #aab4c8;
+  font: 14px Manrope, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+blockquote .note {
+  display: block;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid #ffffff14;
+  color: #e8c46a;
+  font-style: normal;
+}
+.badge[data-status="error"] {
+  border-color: #ff6b6b66;
+  color: #ffb3b3;
+}
+button:focus-visible,
+summary:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  /* keep your existing NASA image here as a fallback behind the video */
+  background: #050916 url("public/assets/images/globe-bg-image.jpeg") center 40% / cover;
+}
+.sky-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills the screen and crops the edges instead of stretching */
+  opacity: 0.75;
+}
+.sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#05091675, #050916eb 62%, #050916);
+}
