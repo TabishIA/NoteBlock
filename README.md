@@ -15,12 +15,6 @@ npm run preview    # serve the production build locally
 ```
 If facing errors: use nvm install 22 -> nvm use 22 -> npm install 
 
-## Deploy (GoDaddy or any static host)
-
-Run `npm run build`, then upload the **contents of `dist/`** to `public_html` (or any sub-folder —
-the build uses relative paths, so it works from either). There is no client-side routing, so no
-rewrite rules are needed.
-
 ## Structure
 
 ```text
