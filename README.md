@@ -39,34 +39,23 @@ public/
 └── notebooks/               notebooks with saved outputs cleared
 ```
 
-### Adding a record
+## All Videos
+https://drive.google.com/drive/folders/15l_n4toYoG2aiMBfwLE2AAEkbyH0K12t?usp=sharing
 
-Add an entry in `src/data/tracks.ts` (a new year, a new city in `CITIES`, …) and drop its video and
-poster into `public/assets/`. The sidebar, counters and prev/next order update automatically, and
-`npm test` fails if a referenced file is missing.
+## Python Notebooks 
+https://drive.google.com/drive/folders/12IGcne0FlKOhNxeFKG4KLatOqmy4uOHq?usp=sharing
 
-## What was fixed in the conversion
+## Resources used 
+The data based approach used the .h5 files from - https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/5200/VNP46A4 
+For each city we used the 2012 and 2023 files and compared them.
 
-| Problem in the static site | Fix |
-|---|---|
-| "Sonification key" showed internal ids (`india-2023`, `city-dubai`) | Each track defined `key` twice (label, then id) so the id overwrote the label. Now separate `id` / `mappingType` fields, enforced by the `Track` type and a test. |
-| Every India year used the 2023 poster; Dubai/Tokyo/LA used the New York poster | Every record has its own poster (missing ones were extracted from the videos). |
-| All city panels carried New York–specific text | City text is generated per city. |
-| Collapsed sidebar folders re-opened on every click | Sidebar is React state; folders keep their state, and reveal themselves if prev/next lands inside one. |
-| "3 READY" / "3 studies" with 17 records | Counts derive from the data. |
-| Grid/timing info (`tempo`) was defined but never shown | Shown in the Sonification key. |
-| Legend items ran together | Rendered as separate items. |
-| No feedback if a video fails | "VIDEO UNAVAILABLE" status. |
+For the India map - https://svs.gsfc.nasa.gov/vis/a000000/a005200/a005276/frames/7680x4320_16x9_3p/nightlights_flat_2012-2023_india/
 
-Selecting a record while one is playing keeps playing the new one; selecting while paused leaves it
-ready to play.
+For the world map - https://svs.gsfc.nasa.gov/vis/a000000/a005200/a005276/nightlights_flat_series_stills_8k_only_lights.change.jpg
 
-## Known data issue (needs a re-render of the videos)
+## NOTE: Known data issue
 
-The **LA** and **NY** videos have the chart title **"near Tokyo"** baked into the video frames, while
-their axes show Los Angeles and New York (NY: 40.2–41.2° N, −74.6 to −73.4°). The page shows a note
-on those two records. To fix it at the source, change the `plt.title(...)` text in
-`radiance-data-sonification.ipynb` for those crops and re-export; the HDF5 inputs aren't bundled here.
+Please ignore the title on the **LA** and **NY** videos where the chart title **"near Tokyo"** is written into the video frames. The axes are correct which is Los Angeles and New York (NY: 40.2–41.2° N, −74.6 to −73.4°).
 
 ## NASA attribution
 
